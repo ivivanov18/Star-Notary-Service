@@ -1,22 +1,29 @@
 const StarNotary = artifacts.require("StarNotary");
 
 contract("StarNotary", accounts => {
+  const name = "My first ethereum star!";
+  const story = "Incredible creation story.";
+  const deg = "29";
+  const mag = "30";
+  const cent = "31";
+  const tokenId = 1;
+
   beforeEach(async function() {
     this.contract = await StarNotary.new({ from: accounts[0] });
   });
 
   describe("can create a star", () => {
-    it("can create a star and get its name", async function() {
-      await this.contract.createStar(
-        "awesome star!",
-        "Incredible story",
-        "29",
-        "30",
-        "45",
-        { from: accounts[0] }
-      );
+    it("can create a star and get its attributes", async function() {
+      await this.contract.createStar(name, story, deg, mag, cent, tokenId, {
+        from: accounts[0]
+      });
 
-      assert.equal(await this.contract.tokenIdToStarInfo(1), "awesome star!");
+      const createdStarInfo = await this.contract.tokenIdToStarInfo(tokenId);
+      assert.equal(createdStarInfo[0], name);
+      assert.equal(createdStarInfo[1], story);
+      assert.equal(createdStarInfo[2], deg);
+      assert.equal(createdStarInfo[3], mag);
+      assert.equal(createdStarInfo[4], cent);
     });
   });
 

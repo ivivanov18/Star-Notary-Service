@@ -19,14 +19,19 @@ contract StarNotary is ERC721{
     uint256 private tokenId = 0;
 
     function createStar(string _name, string _story, string _dec, string _mag, string _cent, uint256 _tokenId) public { 
+        require(bytes(_name).length > 0, "The star must have name.");
+        require(bytes(_story).length > 0, "The star must a story.");
+        require(bytes(_dec).length > 0, "The star must have dec coordinates.");
+        require(bytes(_mag).length > 0, "The star must have mag coordinates.");
+        require(bytes(_cent).length > 0, "The star must have cent coordinates.");
 
-        bytes32 newStarKEC256 = generateKEC256From(_dec, _mag, _cent);
-        require (registeredStarsMapping[newStarKEC256] == false, "The star you want to register is already registered.");
+        bytes32 starToCreateKEC256 = generateKEC256From(_dec, _mag, _cent);
+        require (registeredStarsMapping[starToCreateKEC256] == false, "The star you want to register is already registered.");
 
         Star memory starToCreate = Star(_name, _story, _dec, _mag, _cent);
 
         tokenIdToStarInfo[_tokenId] = starToCreate;
-        registeredStarsMapping[newStarKEC256] = true;
+        registeredStarsMapping[starToCreateKEC256] = true;
 
         mint(_tokenId);
     }
@@ -56,15 +61,6 @@ contract StarNotary is ERC721{
 
     function generateKEC256From(string _dec, string _mag, string _cent) private returns (bytes32) {
         return keccak256(abi.encodePacked(_dec, _mag, _cent));
-    }
-
-    function tokenIdToStarInfo(uint256 _tokenId) public returns (string, string, string, string, string) {
-        return (
-            tokenIdToStarInfo[_tokenId].name,
-            tokenIdToStarInfo[_tokenId].story,
-            tokenIdToStarInfo[_tokenId].cent,
-            tokenIdToStarInfo[_tokenId].dec,
-            tokenIdToStarInfo[_tokenId].mag);
     }
 
     function getNextTokenId() private returns(uint256){
