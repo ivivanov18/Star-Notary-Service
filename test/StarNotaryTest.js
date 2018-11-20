@@ -36,7 +36,9 @@ contract("StarNotary", accounts => {
     let starPrice = web3.toWei(0.01, "ether");
 
     beforeEach(async function() {
-      await this.contract.createStar("awesome star!", starId, { from: user1 });
+      await this.contract.createStar(name, story, deg, mag, cent, starId, {
+        from: user1
+      });
     });
 
     it("user1 can put up their star for sale", async function() {
