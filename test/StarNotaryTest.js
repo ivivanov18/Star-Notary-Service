@@ -93,7 +93,7 @@ contract("StarNotary", accounts => {
     });
   });
 
-  describe("check if star exists", () => {
+  describe("check if star exists", async function() {
     it("can check if created star exists", async () => {
       const starToCheck = {
         name: "Star 1",
@@ -103,7 +103,7 @@ contract("StarNotary", accounts => {
         cent: "42"
       };
       const tokenId = 0;
-      this.contract = await StarNotary.new({ from: accounts[0] });
+
       await this.contract.createStar(
         starToCheck.name,
         starToCheck.story,
