@@ -94,7 +94,7 @@ contract("StarNotary", accounts => {
   });
 
   describe("check if star exists", async function() {
-    it("can check if created star exists", async () => {
+    it("can check if created star exists", async function() {
       const starToCheck = {
         name: "Star 1",
         story: "Story of star 1",
