@@ -126,6 +126,71 @@ contract("StarNotary", accounts => {
       );
     });
   });
+
+  /**
+   * Test the mint function
+   */
+  describe("check account[4] minting of token 10", async function() {
+    beforeEach(async function() {
+      await this.contract.mint(10, { from: accounts[4] });
+    });
+    it("owner of token 10 is account[4]", async function() {
+      assert.equal(await this.contract.ownerOf(10), accounts[4]);
+    });
+  });
+
+  describe("approve and get approved", async function() {
+    it("can approve", async function() {
+      const starUsedForApproval = {
+        name: "Star for approval",
+        story: "Will be used to test approve and getApproved",
+        dec: "100",
+        mag: "101",
+        cent: "102"
+      };
+      const tokenId = 1;
+
+      await this.contract.createStar(
+        starUsedForApproval.name,
+        starUsedForApproval.story,
+        starUsedForApproval.dec,
+        starUsedForApproval.mag,
+        starUsedForApproval.cent,
+        tokenId,
+        { from: accounts[1] }
+      );
+      await this.contract.approve(accounts[2], tokenId, { from: accounts[1] });
+      assert(await this.contract.getApproved(tokenId), accounts[2]);
+    });
+  });
+
+  describe("tokenIdToStarInfo", async function() {
+    it("can respond to tokenIdToStarInfo", async function() {
+      const star = {
+        name: "Star for approval",
+        story: "Will be used to test approve and getApproved",
+        dec: "100",
+        mag: "101",
+        cent: "102"
+      };
+      const tokenId = 1;
+
+      await this.contract.createStar(
+        star.name,
+        star.story,
+        star.dec,
+        star.mag,
+        star.cent,
+        tokenId,
+        { from: accounts[1] }
+      );
+
+      assert.deepEqual(
+        Object.values(star),
+        await this.contract.tokenIdToStarInfo(tokenId)
+      );
+    });
+  });
 });
 
 var expectThrow = async function(promise) {
