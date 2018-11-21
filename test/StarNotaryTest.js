@@ -12,6 +12,10 @@ contract("StarNotary", accounts => {
     this.contract = await StarNotary.new({ from: accounts[0] });
   });
 
+  /**
+   * Test the following functions
+   *  createStar
+   */
   describe("can create a star", () => {
     it("can create a star and get its attributes", async function() {
       await this.contract.createStar(name, story, deg, mag, cent, tokenId, {
@@ -27,6 +31,13 @@ contract("StarNotary", accounts => {
     });
   });
 
+  /**
+   * Tests the following functions
+   *  ownerOf
+   *  putStarUpForSale
+   *  starsForSale
+   *  buyStar
+   */
   describe("buying and selling stars", () => {
     let user1 = accounts[1];
     let user2 = accounts[2];
@@ -79,6 +90,40 @@ contract("StarNotary", accounts => {
           starPrice
         );
       });
+    });
+  });
+
+  describe("check if star exists", () => {
+    it("can check if created star exists", async () => {
+      const starToCheck = {
+        name: "Star 1",
+        story: "Story of star 1",
+        dec: "40",
+        mag: "41",
+        cent: "42"
+      };
+      const tokenId = 0;
+      this.contract = await StarNotary.new({ from: accounts[0] });
+      await this.contract.createStar(
+        starToCheck.name,
+        starToCheck.story,
+        starToCheck.dec,
+        starToCheck.mag,
+        starToCheck.cent,
+        tokenId,
+        {
+          from: accounts[0]
+        }
+      );
+
+      assert(
+        this.contract.checkIfStarExist(
+          starToCheck.dec,
+          starToCheck.mag,
+          starToCheck.cent
+        ),
+        true
+      );
     });
   });
 });
