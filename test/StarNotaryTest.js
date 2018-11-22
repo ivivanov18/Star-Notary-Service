@@ -164,6 +164,9 @@ contract("StarNotary", accounts => {
     });
   });
 
+  /**
+   * Test for tokenIdToStarInfo
+   */
   describe("tokenIdToStarInfo", async function() {
     it("can respond to tokenIdToStarInfo", async function() {
       const star = {
@@ -190,6 +193,10 @@ contract("StarNotary", accounts => {
         await this.contract.tokenIdToStarInfo(tokenId)
       );
     });
+  });
+
+  describe("safeTransferFrom", async function() {
+    it("can safely transfer from", async function() {});
   });
 });
 
