@@ -28,14 +28,13 @@ module.exports = {
       provider: function() {
         return new HDWalletProvider(
           mnemonic,
-          "https://rinkeby.infura.io/v3/145e2886d39b45f1a3f62970b379bb7b" +
-            infura_api_key
+          "https://rinkeby.infura.io/v3/145e2886d39b45f1a3f62970b379bb7b",
+          1
         );
       },
       network_id: "4",
       gas: 6700000,
-      gasPrice: 10000000000,
-      from: "0x42a7f54541e77625369DCE4C0de503B373CD2E83"
+      gasPrice: 10000000000
     }
   }
 };
