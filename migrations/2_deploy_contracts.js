@@ -1,7 +1,5 @@
-const StarNotary = artifacts.require("../contracts/StarNotary.sol");
+var StarNotary = artifacts.require("./StarNotary.sol");
 
 module.exports = function(deployer) {
-  deployer
-    .deploy(StarNotary)
-    .then(() => console.log("Deployment address: ", StarNotary.address));
+  deployer.deploy(StarNotary, "Star Notary");
 };

@@ -12,6 +12,8 @@ contract StarNotary is ERC721{
         string cent;
     }
 
+    uint256 public version = 2;
+
     mapping(uint256 => Star) public tokenIdToStarInfo;
     mapping(uint256 => uint256) public starsForSale;
     mapping(bytes32 => bool) public registeredStarsMapping;

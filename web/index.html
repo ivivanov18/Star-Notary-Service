@@ -42,7 +42,7 @@
       </div>
 
       <button id="claim-button" onclick="claimButtonClicked()">
-        Claim Star
+        Create Star
       </button>
       <br/>
       <button id="show-owner-button" onclick="lookUpStarByTokenIdButtonClicked()">
@@ -566,22 +566,6 @@
               }
           });
 
-
-
-      /*starNotary.claimStar(function(error, result) {
-            if (!error) {
-              var starClaimedEvent = starNotary.starClaimed({ from: account });
-              starClaimedEvent.watch(function(error, result) {
-                if (!error) {
-                  location.reload();
-                } else {
-                  console.log("watching for star claimed event is failing");
-                }
-              });
-            } else {
-              console.log(error);
-            }
-          });*/
         });
 
       }
