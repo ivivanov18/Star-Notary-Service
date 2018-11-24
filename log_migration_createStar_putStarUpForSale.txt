@@ -1,0 +1,79 @@
+truffle migrate --reset --network rinkeby --compile-all
+Compiling ./contracts/Migrations.sol...
+Compiling ./contracts/StarNotary.sol...
+Compiling openzeppelin-solidity/contracts/introspection/ERC165.sol...
+Compiling openzeppelin-solidity/contracts/introspection/IERC165.sol...
+Compiling openzeppelin-solidity/contracts/math/SafeMath.sol...
+Compiling openzeppelin-solidity/contracts/token/ERC721/ERC721.sol...
+Compiling openzeppelin-solidity/contracts/token/ERC721/IERC721.sol...
+Compiling openzeppelin-solidity/contracts/token/ERC721/IERC721Receiver.sol...
+Compiling openzeppelin-solidity/contracts/utils/Address.sol...
+
+Compilation warnings encountered:
+
+/Users/ivan/Documents/apps/UDACITY/BlockchainDeveloper/Decentralized_Star_Notary_Project/Decentralized_Star_Notary_Zep/contracts/StarNotary.sol:64:5: Warning: Function state mutability can be restricted to pure
+    function generateKEC256From(string _dec, string _mag, string _cent) private returns (bytes32) {
+    ^ (Relevant source part starts here and spans across multiple lines).
+
+Writing artifacts to ./build/contracts
+
+Using network 'rinkeby'.
+
+Running migration: 1_initial_migration.js
+  Deploying Migrations...
+  ... 0x158cdfc5e5c717132b8f9b418909a27519987d1930d042e2cd16d11761c2ddfb
+  Migrations: 0x0e1ca8556156b0e8dd3980ef60ef3ec131e80d88
+Saving successful migration to network...
+  ... 0x297c5edd758de35bff13a24cf5637b602527f4dc26d7f082ebf257e31dc0e8f6
+Saving artifacts...
+Running migration: 2_deploy_contracts.js
+  Deploying StarNotary...
+  ... 0xdda3a7d3c3747f3f9102aa2311bf9be7bcec47feb08f3a61a9fd515dd1cf6993
+  StarNotary: 0x4a6fe246fbb2ca90ee11836ab24c981527a7573c
+Saving successful migration to network...
+  ... 0xdb36895ee450d884329eaddf310e4b66b1d9e382a5a062505c2ac14189a257de
+Saving artifacts...
+
+--- Contract Creation ---
+truffle(rinkeby)> app.createStar("First star!","star number on ethereum rinkeby! Udacity rocks!","20","30","40",100)
+{ tx: '0xd7d670fbd09be58e7fe30e6211ba904898055f99465faea26a086a82071dd9b9',
+  receipt:
+   { blockHash: '0x393f7b08f1dbdaaa0bb48471de6b040088d12ce1c2a7bf4ce484998f9f8a5ac6',
+     blockNumber: 3395145,
+     contractAddress: null,
+     cumulativeGasUsed: 238479,
+     from: '0x42a7f54541e77625369dce4c0de503b373cd2e83',
+     gasUsed: 238479,
+     logs: [ [Object] ],
+     logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000080000000000000000000000000008000000000000000000000000000000040000000000000000020000000000000000000800000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000400000000200000000000000000000000000000000000000000000001000000000000000002000000000000000000000000000000000004000000000000000020000000000000100000000000000000000000000000000000008000000000000000',
+     status: '0x1',
+     to: '0x4a6fe246fbb2ca90ee11836ab24c981527a7573c',
+     transactionHash: '0xd7d670fbd09be58e7fe30e6211ba904898055f99465faea26a086a82071dd9b9',
+     transactionIndex: 0 },
+  logs:
+   [ { address: '0x4a6fe246fbb2ca90ee11836ab24c981527a7573c',
+       blockHash: '0x393f7b08f1dbdaaa0bb48471de6b040088d12ce1c2a7bf4ce484998f9f8a5ac6',
+       blockNumber: 3395145,
+       logIndex: 0,
+       removed: false,
+       transactionHash: '0xd7d670fbd09be58e7fe30e6211ba904898055f99465faea26a086a82071dd9b9',
+       transactionIndex: 0,
+       event: 'Transfer',
+       args: [Object] } ] }
+
+--- putStarUpForSale ---
+{ tx: '0x227921e307970b49727b17efa8df2eaa564e988e54a4a1cc3b1ad9dfb183f0c6',
+  receipt:
+   { blockHash: '0x5e278eb8c87d6a8456c13eae6d25b2dc039a955248c6831474a31e42d276ca02',
+     blockNumber: 3395175,
+     contractAddress: null,
+     cumulativeGasUsed: 44719,
+     from: '0x42a7f54541e77625369dce4c0de503b373cd2e83',
+     gasUsed: 44719,
+     logs: [],
+     logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+     status: '0x1',
+     to: '0x4a6fe246fbb2ca90ee11836ab24c981527a7573c',
+     transactionHash: '0x227921e307970b49727b17efa8df2eaa564e988e54a4a1cc3b1ad9dfb183f0c6',
+     transactionIndex: 0 },
+  logs: [] }
